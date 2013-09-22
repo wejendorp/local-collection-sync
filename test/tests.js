@@ -32,18 +32,18 @@ describe('local-collection', function() {
 
   describe('fetch', function() {
     it('returns a collection', function() {
-      var c = testCollection.fetch('/');
+      var c = testCollection.fetch();
       assert(c instanceof testCollection);
     });
     it('callbacks with a collection', function(done) {
-      testCollection.fetch('http://localhost:3003/', function(err, c){
+      testCollection.fetch(function(err, c){
         assert(c instanceof testCollection);
         done();
       });
     });
     it('emits change', function(done) {
-      collection.on('change', done);
-      collection.fetch('/');
+      collection.once('change', function(){done();});
+      collection.fetch();
     });
   });
 
@@ -51,6 +51,12 @@ describe('local-collection', function() {
     it('returns a model', function() {
       var m = collection.get('id');
       assert(m instanceof testModel);
+    });
+    it('fetches model with correct id', function(done) {
+      collection.get('id', function(err, m) {
+        assert(m.id() === 'id');
+        done();
+      });
     });
   });
   describe('get', function() {
