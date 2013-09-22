@@ -103,14 +103,10 @@ describe('local-collection', function() {
 
     it('callbacks with updated model', function(done) {
       collection.get(ref.id, function(err, m) {
-        // console.log(m);
         assert(m.id() === ref.id);
         assert(m.name() == ref.name);
         done();
       });
     });
-  });
-  describe('get', function() {
-
   });
 });
