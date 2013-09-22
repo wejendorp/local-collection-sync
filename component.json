@@ -1,0 +1,14 @@
+{
+  "name": "local-collection-sync",
+  "description": "Server communication plugin for local-collection",
+  "dependencies": {
+    "visionmedia/superagent": "*"
+  },
+  "development": {
+    "wejendorp/local-collection" : "*"
+  },
+  "main": "lib/index.js",
+  "scripts": [
+    "lib/index.js"
+  ]
+}
