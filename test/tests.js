@@ -45,16 +45,67 @@ describe('local-collection', function() {
       collection.once('change', function(){done();});
       collection.fetch();
     });
+
+    it('expands automatically', function() {
+      var test = testCollection.fetch();
+      // empty collection
+      assert(test.length() === 0);
+      // populated after change
+      test.on('change', function() {
+        assert(this.length() === testData.models.length);
+      });
+    });
+
+    describe('caching', function() {
+      beforeEach(function(done) {
+        testCollection.fetch(function() { done(); });
+      });
+      it('returns cached results', function() {
+        var c = testCollection.fetch();
+        assert(c.length() !== 0);
+      });
+      it('updates cached result', function() {
+        var c = testCollection.fetch();
+
+        // These changes should be overwritten
+        c.each(function(model){
+          model.name('test');
+        });
+
+        c.once('change', function() {
+          this.each(function(model) {
+            assert(model.name() !== 'test');
+          });
+        });
+      });
+    })
   });
 
   describe('get', function() {
-    it('returns a model', function() {
-      var m = collection.get('id');
+    var ref = testData.getId('2');
+    beforeEach(function() {
+      (new testCollection.model({id:'2', name:'Cached'})).store();
+    })
+
+    it('returns a cached model', function() {
+      var m = collection.get('2');
       assert(m instanceof testModel);
+      assert(m.name() === 'Cached');
     });
-    it('fetches model with correct id', function(done) {
-      collection.get('id', function(err, m) {
-        assert(m.id() === 'id');
+
+    it('updates cached model', function(done) {
+      var m = collection.get('2');
+      m.once('change name', function(name) {
+        assert(name === ref.name);
+        done();
+      });
+    });
+
+    it('callbacks with updated model', function(done) {
+      collection.get(ref.id, function(err, m) {
+        // console.log(m);
+        assert(m.id() === ref.id);
+        assert(m.name() == ref.name);
         done();
       });
     });

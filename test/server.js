@@ -1,15 +1,22 @@
 var express = require('express');
 
 var app = express();
+var data = require('./testdata');
+
+
 
 app.get('/', function(req, res) {
   res.json(200, []);
 });
 app.get('/test', function(req, res) {
-  res.json(200, [{id: 1}, {id: 2}]);
+  res.json(200, data.models);
 });
 app.get('/test/:id', function(req, res) {
-  res.json(200, {id: req.params.id, name:'test'+req.params.id});
+  var ret = data.getId(req.params.id);
+  if(ret)
+    res.json(ret);
+  else
+    res.send(404);
 });
 
 app.listen(3003);
