@@ -36,12 +36,12 @@ function show(model) {
 ## API
 This plugin introduces the methods
 
-### fetch(options, fn)
+### fetch(url, fn)
 Fetch the models at model.url() or at `options.url`, returning a new collection
 instance with the result. Caches the response as a list of ids.
 
 ```js
-var cacheCollection = collection.fetch({url: '/users/active'}, function(err, updatedCollection) {
+var cacheCollection = collection.fetch('/users/active', function(err, updated) {
   // updated is the same collection after it has been fetched
 });
 // cacheCollection is a cached version of the model, or just an empty model with the id

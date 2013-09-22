@@ -5,7 +5,9 @@
     "visionmedia/superagent": "*"
   },
   "development": {
-    "wejendorp/local-collection" : "*"
+    "wejendorp/local-collection" : "*",
+    "component/assert" : "*",
+    "component/model": "*"
   },
   "main": "lib/index.js",
   "scripts": [
