@@ -60,6 +60,12 @@ var cached = collection.get('id', function(err, updated) {
 // cached is a cached version of the model, or just an empty model with the id
 ```
 
+### url
+TODO
+
+### route
+TODO
+
 ## Dependencies
 - [visionmedia/superagent](https://github.com/visionmedia/superagent)
 
