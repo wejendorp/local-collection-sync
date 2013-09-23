@@ -23,10 +23,10 @@ from cache on refresh, and new items will pop up when server responds to fetch.
 var userCollection = require('usercollection');
 
 var users = userCollection.fetch('active');
-users.each(show);
+users.each(show); // Show cached results
 
 users.on('change', function() {
-  this.each(show);
+  this.each(show); // Show server results
 });
 
 var body = document.body;
