@@ -8,6 +8,9 @@ and update the fields when (if) more data becomes available.
 This will make collections work in offline mode, or just present cached data
 until the server gets around to responding.
 
+## Future
+Keep track of unsaved models and sync when possible.
+
 ## Installation
 
     $ component install wejendorp/local-collection-sync
