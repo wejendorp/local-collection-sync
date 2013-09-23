@@ -13,14 +13,16 @@ until the server gets around to responding.
     $ component install wejendorp/local-collection-sync
 
 ## Example
-Load a list of names with progressive enhancement:
+Load a list of names with progressive enhancement. The list will be populated
+from cache on refresh, and new items will pop up when server responds to fetch.
+
 ```js
-var collection = require('mycollection');
+var userCollection = require('usercollection');
 
-collection.fetch('/users');
-collection.each(show);
+var users = userCollection.fetch('active');
+users.each(show);
 
-collection.on('change', function() {
+users.on('change', function() {
   this.each(show);
 });
 
