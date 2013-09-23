@@ -8,6 +8,9 @@ and update the fields when (if) more data becomes available.
 This will make collections work in offline mode, or just present cached data
 until the server gets around to responding.
 
+## Future
+Keep track of unsaved models and sync when possible.
+
 ## Installation
 
     $ component install wejendorp/local-collection-sync
@@ -20,10 +23,10 @@ from cache on refresh, and new items will pop up when server responds to fetch.
 var userCollection = require('usercollection');
 
 var users = userCollection.fetch('active');
-users.each(show);
+users.each(show); // Show cached results
 
 users.on('change', function() {
-  this.each(show);
+  this.each(show); // Show server results
 });
 
 var body = document.body;
