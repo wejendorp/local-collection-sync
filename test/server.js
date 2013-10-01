@@ -3,7 +3,8 @@ var express = require('express');
 var app = express();
 var data = require('./testdata');
 
-
+app.use(express.static(__dirname + '/../build'));
+app.use(express.static(__dirname));
 
 app.get('/', function(req, res) {
   res.json(200, []);

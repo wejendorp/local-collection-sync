@@ -83,12 +83,14 @@ describe('local-collection', function() {
 
   describe('get', function() {
     var ref = testData.getId('2');
+
     beforeEach(function() {
       (new testCollection.model({id:'2', name:'Cached'})).store();
-    })
+    });
 
-    it('returns a cached model', function() {
-      var m = collection.get('2');
+    it('returns a cached model on 404', function() {
+      (new testCollection.model({id: '5', name: 'Cached'})).store();
+      var m = collection.get('5');
       assert(m instanceof testModel);
       assert(m.name() === 'Cached');
     });
