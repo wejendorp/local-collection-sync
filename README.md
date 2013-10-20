@@ -1,4 +1,6 @@
 # local-collection-sync
+Note: Work in progress!
+
 Plugin for [local-collection](https://github.com/wejendorp/local-collection) to
 sync localStorage collection with the server.
 
